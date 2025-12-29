@@ -5,11 +5,47 @@ import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const projects = [
+  {
+    title: "On-Demand Rides Made Simple",
+    description: "A sleek ride-hailing experience with intuitive booking.",
+    image: "/images/project1.png",
+    accent: "#d9f0ff",
+  },
+  {
+    title: "The Library Management Platform",
+    description: "Track titles, readers, and recommendations with ease.",
+    image: "/images/project2.png",
+    accent: "#fff1e0",
+  },
+  {
+    title: "YC Directory Startup Hub",
+    description: "Discover and connect with emerging founders quickly.",
+    image: "/images/project3.png",
+    accent: "#ffe8ed",
+  },
+  {
+    title: "Smart Mobility Companion",
+    description: "Route planning and payments unified in one dashboard.",
+    image: "/images/project1.png",
+    accent: "#e5f4ff",
+  },
+  {
+    title: "Digital BookShelf",
+    description: "Curated reading journeys with rich metadata.",
+    image: "/images/project2.png",
+    accent: "#ffe7d6",
+  },
+  {
+    title: "Founder Showcase",
+    description: "Pitch-ready profiles and investor outreach tools.",
+    image: "/images/project3.png",
+    accent: "#ffe0ea",
+  },
+];
+
 const AppShowcase = () => {
   const sectionRef = useRef(null);
-  const rydeRef = useRef(null);
-  const libraryRef = useRef(null);
-  const ycDirectoryRef = useRef(null);
 
   useGSAP(() => {
     // Animation for the main section
@@ -20,23 +56,18 @@ const AppShowcase = () => {
     );
 
     // Animations for each app showcase
-    const cards = [rydeRef.current, libraryRef.current, ycDirectoryRef.current];
-
-    cards.forEach((card, index) => {
+    gsap.utils.toArray(".project-card").forEach((card, index) => {
       gsap.fromTo(
         card,
-        {
-          y: 50,
-          opacity: 0,
-        },
+        { y: 40, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          duration: 1,
-          delay: 0.3 * (index + 1),
+          duration: 0.8,
+          delay: 0.12 * (index + 1),
           scrollTrigger: {
             trigger: card,
-            start: "top bottom-=100",
+            start: "top bottom-=80",
           },
         }
       );
@@ -45,43 +76,21 @@ const AppShowcase = () => {
 
   return (
     <div id="work" ref={sectionRef} className="app-showcase">
-      <div className="w-full">
-        <div className="showcaselayout">
-          <div ref={rydeRef} className="first-project-wrapper">
-            <div className="image-wrapper">
-              <img src="/images/project1.png" alt="Ryde App Interface" />
+      <div className="showcaselayout">
+        {projects.map((project) => (
+          <article key={project.title} className="project-card">
+            <div
+              className="project-image-wrapper"
+              style={{ background: project.accent }}
+            >
+              <img src={project.image} alt={project.title} />
             </div>
-            <div className="text-content">
-              <h2>
-                On-Demand Rides Made Simple with a Powerful, User-Friendly App
-                called Ryde
-              </h2>
-              <p className="text-white-50 md:text-xl">
-                An app built with React Native, Expo, & TailwindCSS for a fast,
-                user-friendly experience.
-              </p>
+            <div className="project-text">
+              <h2>{project.title}</h2>
+              <p>{project.description}</p>
             </div>
-          </div>
-
-          <div className="project-list-wrapper overflow-hidden">
-            <div className="project" ref={libraryRef}>
-              <div className="image-wrapper bg-[#FFEFDB]">
-                <img
-                  src="/images/project2.png"
-                  alt="Library Management Platform"
-                />
-              </div>
-              <h2>The Library Management Platform</h2>
-            </div>
-
-            <div className="project" ref={ycDirectoryRef}>
-              <div className="image-wrapper bg-[#FFE7EB]">
-                <img src="/images/project3.png" alt="YC Directory App" />
-              </div>
-              <h2>YC Directory - A Startup Showcase App</h2>
-            </div>
-          </div>
-        </div>
+          </article>
+        ))}
       </div>
     </div>
   );

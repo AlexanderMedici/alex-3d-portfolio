@@ -1,142 +1,89 @@
-<div align="center">
-  <br />
-    <a href="https://www.youtube.com/watch?v=E-fdPfRxkzQ" target="_blank">
-      <img src="public/images/readme.png" alt="Project Banner">
-    </a>
-  <br />
+# 3D Portfolio (React + Three.js)
 
-  <div>
-    <img src="https://img.shields.io/badge/-Three.js-black?style=for-the-badge&logo=three.js&logoColor=white" />
-    <img src="https://img.shields.io/badge/-GSAP-88CE02?style=for-the-badge&logo=greensock&logoColor=white" />
-    <img src="https://img.shields.io/badge/-Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" />
-  </div>
+Interactive portfolio featuring 3D hero scenes, animated sections, and an accordion-style work experience carousel. Built with React 19, React Three Fiber, GSAP, and Tailwind (Vite).
 
-  <h3 align="center">Interactive 3D Portfolio Website</h3>
+## Table of Contents
 
-   <div align="center">
-     Build this project step by step with our detailed tutorial on <a href="https://www.youtube.com/@javascriptmastery/videos" target="_blank"><b>JavaScript Mastery</b></a> YouTube. Join the JSM family!
-    </div>
+- Overview
+- Features
+- Tech Stack
+- Project Structure
+- Setup
+- Scripts
+- Environment Variables
+- Contact/Support
+
+## Overview
+
+This project delivers a full single-page portfolio with:
+- Work carousel styled as an accordion with categories and responsibilities.
+- Project showcases, tech stack highlights, and a contact form wired to EmailJS.
+- Responsive layout with smooth motion and hover interactions.
+
+## Features
+
+- React Three Fiber scene with hero lights and room model
+- GSAP-driven animations and smooth section transitions
+- Accordion work experience with expandable details/tags
+- Project showcase grid and logo strip
+- Tech stack cards with 3D logos
+- EmailJS-powered contact form
+- Fully responsive design
+
+## Tech Stack
+
+<div>
+  <img src="https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=000" />
+  <img src="https://img.shields.io/badge/Vite-6-646CFF?style=for-the-badge&logo=vite&logoColor=fff" />
+  <img src="https://img.shields.io/badge/Three.js-0.174-000000?style=for-the-badge&logo=three.js&logoColor=white" />
+  <img src="https://img.shields.io/badge/React%20Three%20Fiber-^9.1.0-000000?style=for-the-badge&logo=three.js&logoColor=white" />
+  <img src="https://img.shields.io/badge/GSAP-3.12-88CE02?style=for-the-badge&logo=greensock&logoColor=white" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-4.0-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" />
+  <img src="https://img.shields.io/badge/EmailJS-Browser-FFB3B3?style=for-the-badge&logo=mail.ru&logoColor=000" />
 </div>
 
-## 📋 <a name="table">Table of Contents</a>
+## Project Structure
 
-1. 🤖 [Introduction](#introduction)
-2. ⚙️ [Tech Stack](#tech-stack)
-3. 🔋 [Features](#features)
-4. 🤸 [Quick Start](#quick-start)
-5. 🔗 [Assets & Snippets](#links)
-6. 🚀 [More](#more)
+- `src/App.jsx` – page assembly and section order
+- `src/sections/` – page sections (Hero, Showcase, LogoShowcase, FeatureCards, Experience, TechStack, Contact, Footer)
+- `src/components/models/` – 3D scene components (hero room, lights, contact models, tech logos)
+- `src/components/NavBar.jsx` – navigation
+- `src/index.css` – global styles and custom utility/classes
+- `public/` – static assets (images, textures, models)
 
-## ⚠️ Tutorial
+## Setup
 
-This repository contains the code corresponding to an in-depth tutorial available on our YouTube channel, <a href="https://www.youtube.com/@javascriptmastery/videos" target="_blank"><b>JavaScript Mastery</b></a>.
-
-If you prefer visual learning, this is the perfect resource for you. Follow our tutorial to learn how to build projects like these step-by-step in a beginner-friendly manner!
-
-<a href="https://www.youtube.com/watch?v=E-fdPfRxkzQ" target="_blank"><img src="https://github.com/sujatagunale/EasyRead/assets/151519281/1736fca5-a031-4854-8c09-bc110e3bc16d" /></a>
-
-## <a name="introduction">🤖 Introduction</a>
-
-The 3D Portfolio project is a highly engaging personal website that features animated 3D scenes, smooth camera transitions, interactive model showcases, and responsive design. It’s ideal for developers, designers, or freelancers looking to stand out in the digital crowd.
-
-If you're getting started and need assistance or face any bugs, join our active Discord community with over **50k+** members. It's a place where people help each other out.
-
-<a href="https://discord.com/invite/n6EdbFJ" target="_blank"><img src="https://github.com/sujatagunale/EasyRead/assets/151519281/618f4872-1e10-42da-8213-1d69e486d02e" /></a>
-
-## <a name="tech-stack">⚙️ Tech Stack</a>
-
-- Three.js
-- React Three Fiber
-- Drei
-- GSAP
-- Tailwind CSS
-- Vite
-- React 19
-
-## <a name="features">🔋 Features</a>
-
-### Features of the 3D Portfolio Project
-
-👉 Animated 3D models and reveal animations
-
-👉 Realistic lighting and shadows
-
-👉 GSAP-powered scroll interactions
-
-👉 Responsive design with Tailwind CSS and Flexbox/Grid
-
-👉 Micro Interactions
-
-👉 Multi-section layout (About, Projects, Contact)
-
-👉 Mobile optimized 3D experience
-
-and many more, including code architecture and reusability.
-
-## <a name="quick-start">🤸 Quick Start</a>
-
-Follow these steps to set up the project locally on your machine.
-
-**Prerequisites**
-
-Make sure you have the following installed on your machine:
-
-- [Git](https://git-scm.com/)
-- [Node.js](https://nodejs.org/en)
-- [npm](https://www.npmjs.com/) (Node Package Manager)
-
-**Cloning the Repository**
+Prerequisites: Node.js (LTS) and npm.
 
 ```bash
-git clone https://github.com/adrianhajdin/3d-portfolio.git
-cd 3d-portfolio
-```
-
-**Installation**
-
-Install the project dependencies using npm:
-
-```bash
+git clone <this-repo-url>
+cd 3d-portfolio-2026
 npm install
 ```
 
-**Set Up Environment Variables**
-
-Create a new file named `.env` in the root of your project and add the following content:
+Create a `.env` at the project root:
 
 ```env
-VITE_APP_EMAILJS_SERVICE_ID=
-VITE_APP_EMAILJS_TEMPLATE_ID=
-VITE_APP_EMAILJS_PUBLIC_KEY=
+VITE_APP_EMAILJS_SERVICE_ID=your_service_id
+VITE_APP_EMAILJS_TEMPLATE_ID=your_template_id
+VITE_APP_EMAILJS_PUBLIC_KEY=your_public_key
 ```
 
-Replace the placeholder values with your actual **[EmailJS](https://www.emailjs.com/)** credentials.
+## Scripts
 
-**Running the Project**
+- `npm run dev` – start Vite dev server
+- `npm run build` – production build
+- `npm run preview` – preview production build
+- `npm run lint` – run ESLint
 
-```bash
-npm run dev
-```
+## Environment Variables
 
-Open [http://localhost:5173](http://localhost:5173/) in your browser to view the project.
+Used by the contact form (EmailJS):
+- `VITE_APP_EMAILJS_SERVICE_ID`
+- `VITE_APP_EMAILJS_TEMPLATE_ID`
+- `VITE_APP_EMAILJS_PUBLIC_KEY`
 
+## Contact/Support
 
-## <a name="links">🔗 Assets and Snippets</a>
-
-Assets and snippets used in the project can be found in the **[video kit](https://jsm.dev/pfolio25-kit)**.
-
-<a href="https://jsm.dev/pfolio25-kit" target="_blank">
-  <img src="public/images/readme-video-kit.png" alt="Video Kit Banner">
-</a>
-
-
-## <a name="more">🚀 More</a>
-
-**Advance your skills with JSM Pro Courses**
-
-Enjoyed creating this project? Dive deeper into our PRO courses for a richer learning adventure. They're packed with
-detailed explanations, cool features, and exercises to boost your skills. Give it a go!
-
-<a href="https://beta.jsmastery.pro/" target="_blank">
-  <img src="public/images/readme-bottom.png" alt="Project Banner">
-</a>
+If you run into issues setting up or customizing the portfolio, open an issue or share the error/output and the steps to reproduce.
+*** End Patch"】итель to=functions.apply_patch bow╝ JSON_OBJECTтарамовала## Test Output Reasoning

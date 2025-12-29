@@ -1,148 +1,128 @@
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useState } from "react";
 
-import { expCards } from "../constants";
-import TitleHeader from "../components/TitleHeader";
-import GlowCard from "../components/GlowCard";
-
-gsap.registerPlugin(ScrollTrigger);
+const timelineData = [
+  {
+    title: "Full Stack Developer",
+    company: "Scarborough Health Network",
+    year: "Oct 2022 - Present",
+    description:
+      "Build responsive, high-performing web apps that stay maintainable at scale.",
+    categories: ["Development", "SEO", "Responsiveness", "Animations"],
+    responsibilities: [
+      "Engineered reusable React/MUI component libraries, accelerating delivery across teams.",
+      "Architected Node microservices and messaging for 4k+ employees with strong SLAs.",
+      "Optimized SQL and API performance to cut response times by 50% on core flows.",
+      "Integrated secure data import pipelines with third-party APIs and validation.",
+    ],
+  },
+  {
+    title: "Full Stack Developer",
+    company: "Freelance",
+    year: "Jun 2022 - Sept 2022",
+    description:
+      "Shipped modern product sites with conversion-focused flows and clean UX.",
+    categories: ["E-commerce", "Performance", "Accessibility"],
+    responsibilities: [
+      "Built mobile-first routing and booking with Google Maps to serve 10k+ riders.",
+      "Refactored a legacy checkout with Stripe, cutting time-to-pay by 20%.",
+      "Modernized React UI with Styled Components, reducing UI bugs and churn.",
+      "Delivered sprint goals on time alongside product/design in Agile cycles.",
+    ],
+  },
+  {
+    title: "Full Stack Developer",
+    company: "Contract",
+    year: "2018 - 2022",
+    description:
+      "Partnered with teams to modernize legacy stacks and improve reliability.",
+    categories: ["Refactors", "API Design", "Mobile-first"],
+    responsibilities: [
+      "Scaled a mobile-first routing platform with resilient APIs and telemetry.",
+      "Improved e-commerce conversion via optimized flows and payments.",
+      "Reduced UI defects by rebuilding components with modern patterns.",
+      "Shipped continuously with product and engineering under tight deadlines.",
+    ],
+  },
+];
 
 const Experience = () => {
-  useGSAP(() => {
-    // Loop through each timeline card and animate them in
-    // as the user scrolls to each card
-    gsap.utils.toArray(".timeline-card").forEach((card) => {
-      // Animate the card coming in from the left
-      // and fade in
-      gsap.from(card, {
-        // Move the card in from the left
-        xPercent: -100,
-        // Make the card invisible at the start
-        opacity: 0,
-        // Set the origin of the animation to the left side of the card
-        transformOrigin: "left left",
-        // Animate over 1 second
-        duration: 1,
-        // Use a power2 ease-in-out curve
-        ease: "power2.inOut",
-        // Trigger the animation when the card is 80% of the way down the screen
-        scrollTrigger: {
-          // The card is the trigger element
-          trigger: card,
-          // Trigger the animation when the card is 80% down the screen
-          start: "top 80%",
-        },
-      });
-    });
-
-    // Animate the timeline height as the user scrolls
-    // from the top of the timeline to 70% down the screen
-    // The timeline height should scale down from 1 to 0
-    // as the user scrolls up the screen
-    gsap.to(".timeline", {
-      // Set the origin of the animation to the bottom of the timeline
-      transformOrigin: "bottom bottom",
-      // Animate the timeline height over 1 second
-      ease: "power1.inOut",
-      // Trigger the animation when the timeline is at the top of the screen
-      // and end it when the timeline is at 70% down the screen
-      scrollTrigger: {
-        trigger: ".timeline",
-        start: "top center",
-        end: "70% center",
-        // Update the animation as the user scrolls
-        onUpdate: (self) => {
-          // Scale the timeline height as the user scrolls
-          // from 1 to 0 as the user scrolls up the screen
-          gsap.to(".timeline", {
-            scaleY: 1 - self.progress,
-          });
-        },
-      },
-    });
-
-    // Loop through each expText element and animate them in
-    // as the user scrolls to each text element
-    gsap.utils.toArray(".expText").forEach((text) => {
-      // Animate the text opacity from 0 to 1
-      // and move it from the left to its final position
-      // over 1 second with a power2 ease-in-out curve
-      gsap.from(text, {
-        // Set the opacity of the text to 0
-        opacity: 0,
-        // Move the text from the left to its final position
-        // (xPercent: 0 means the text is at its final position)
-        xPercent: 0,
-        // Animate over 1 second
-        duration: 1,
-        // Use a power2 ease-in-out curve
-        ease: "power2.inOut",
-        // Trigger the animation when the text is 60% down the screen
-        scrollTrigger: {
-          // The text is the trigger element
-          trigger: text,
-          // Trigger the animation when the text is 60% down the screen
-          start: "top 60%",
-        },
-      });
-    }, "<"); // position parameter - insert at the start of the animation
-  }, []);
+  const [openIndex, setOpenIndex] = useState(0);
 
   return (
-    <section
-      id="experience"
-      className="flex-center md:mt-40 mt-20 section-padding xl:px-0"
-    >
-      <div className="w-full h-full md:px-20 px-5">
-        <TitleHeader
-          title="Professional Work Experience"
-          sub="💼 My Career Overview"
-        />
-        <div className="mt-32 relative">
-          <div className="relative z-50 xl:space-y-32 space-y-10">
-            {expCards.map((card) => (
-              <div key={card.title} className="exp-card-wrapper">
-                <div className="xl:w-2/6">
-                  <GlowCard card={card}>
-                    <div>
-                      <img src={card.imgPath} alt="exp-img" />
+    <section id="experience" className="experience-section">
+      <div className="experience-frame">
+        <div className="experience-topline">
+          <span>2028</span>
+          <span>creative</span>
+          <span>portfolio</span>
+          <span>photography</span>
+        </div>
+
+        <div className="experience-body">
+          <div className="experience-heading">
+            <span>WORK</span>&nbsp;&nbsp;
+            <span>EXPERIENCE</span>
+          </div>
+
+          <div className="experience-list accordion">
+            {timelineData.map((card, index) => {
+              const isOpen = openIndex === index;
+              const number = (index + 1).toString().padStart(3, "0");
+
+              return (
+                <article
+                  key={card.title}
+                  className={`timeline-card accordion-item ${
+                    isOpen ? "open" : ""
+                  }`}
+                >
+                  <button
+                    className="accordion-header"
+                    onClick={() => setOpenIndex(isOpen ? -1 : index)}
+                    aria-expanded={isOpen}
+                  >
+                    <span className="accordion-number">({number})</span>
+                    <div className="accordion-title">
+                      <h3>{card.title}</h3>
+                      <p className="experience-meta">
+                        {card.company} · {card.year}
+                      </p>
                     </div>
-                  </GlowCard>
-                </div>
-                <div className="xl:w-4/6">
-                  <div className="flex items-start">
-                    <div className="timeline-wrapper">
-                      <div className="timeline" />
-                      <div className="gradient-line w-1 h-full" />
-                    </div>
-                    <div className="expText flex xl:gap-20 md:gap-10 gap-5 relative z-20">
-                      <div className="timeline-logo">
-                        <img src={card.logoPath} alt="logo" />
+                    <span className="accordion-icon">{isOpen ? "×" : "+"}</span>
+                  </button>
+
+                  <div
+                    className={`accordion-content ${isOpen ? "show" : ""}`}
+                    aria-hidden={!isOpen}
+                  >
+                    <div className="experience-content-grid">
+                      <div className="experience-desc-wrap">
+                        <p className="experience-desc">{card.description}</p>
+                        <button className="cta-button alt">View Role</button>
                       </div>
-                      <div>
-                        <h1 className="font-semibold text-3xl">{card.title}</h1>
-                        <p className="my-5 text-white-50">
-                          🗓️&nbsp;{card.date}
-                        </p>
-                        <p className="text-[#839CB5] italic">
-                          Responsibilities
-                        </p>
-                        <ul className="list-disc ms-5 mt-5 flex flex-col gap-5 text-white-50">
-                          {card.responsibilities.map(
-                            (responsibility, index) => (
-                              <li key={index} className="text-lg">
-                                {responsibility}
-                              </li>
-                            )
-                          )}
-                        </ul>
+                      <div className="experience-tags">
+                        <p className="experience-meta label">Categories</p>
+                        <div className="tag-wrap">
+                          {card.categories.map((tag) => (
+                            <span key={tag} className="tag">
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
                       </div>
                     </div>
+
+                    <ul className="responsibility-list">
+                      {card.responsibilities.map(
+                        (responsibility, itemIndex) => (
+                          <li key={itemIndex}>{responsibility}</li>
+                        )
+                      )}
+                    </ul>
                   </div>
-                </div>
-              </div>
-            ))}
+                </article>
+              );
+            })}
           </div>
         </div>
       </div>
