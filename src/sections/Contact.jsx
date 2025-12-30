@@ -96,7 +96,7 @@ const Contact = () => {
           <div className="contact-right">
             <div className="contact-info-row">
               <span>+123-456-7890</span>
-              <span>hello@reallygreatsite.com</span>
+              <span>hellomedici@gmail.com</span>
             </div>
 
             <h1 className="contact-heading">CONTACT</h1>
