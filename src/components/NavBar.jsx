@@ -5,6 +5,9 @@ import { navLinks } from "../constants";
 const NavBar = () => {
   // track if the user has scrolled down the page
   const [scrolled, setScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const handleLinkClick = () => setIsMenuOpen(false);
 
   useEffect(() => {
     // create an event listener for when the user scrolls
@@ -20,6 +23,17 @@ const NavBar = () => {
 
     // cleanup the event listener when the component is unmounted
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
@@ -47,7 +61,37 @@ const NavBar = () => {
             <span>Contact me</span>
           </div>
         </a>
+
+        <button
+          className={`mobile-menu-toggle ${isMenuOpen ? "open" : ""}`}
+          onClick={() => setIsMenuOpen((prev) => !prev)}
+          aria-label="Toggle navigation"
+          aria-expanded={isMenuOpen}
+        >
+          <span />
+          <span />
+        </button>
       </div>
+
+      <div
+        className={`mobile-overlay ${isMenuOpen ? "open" : ""}`}
+        onClick={() => setIsMenuOpen(false)}
+      />
+
+      <nav className={`mobile ${isMenuOpen ? "open" : ""}`}>
+        <ul>
+          {navLinks.map(({ link, name }) => (
+            <li key={name}>
+              <a href={link} onClick={handleLinkClick}>
+                {name}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <a href="#contact" className="mobile-contact" onClick={handleLinkClick}>
+          Contact me
+        </a>
+      </nav>
     </header>
   );
 };

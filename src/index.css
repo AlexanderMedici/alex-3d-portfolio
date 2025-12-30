@@ -3,11 +3,13 @@
 
 :root {
   --gradient: radial-gradient(circle, #e5e5e5 0%, #fff 100%);
+  --navbar-height: clamp(64px, 10vw, 88px);
 }
 
 html,
 body {
-  width: 100dvw;
+  width: 100%;
+  max-width: 100%;
   overflow-x: hidden;
   background-color: black;
   color: white;
@@ -16,7 +18,7 @@ body {
 }
 
 section {
-  width: 100dvw;
+  width: 100%;
 }
 
 @theme {
@@ -154,6 +156,10 @@ section {
     padding-bottom: 0;
     transform: none;
     text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: clamp(0.2rem, 0.9vw, 0.6rem);
   }
 
   .experience-list {
@@ -487,7 +493,7 @@ section {
     }
 
     .contact-btn {
-      @apply flex;
+      @apply hidden lg:flex;
 
       .inner {
         @apply px-5 py-2 rounded-lg bg-white text-black group-hover:bg-black-50 transition-colors duration-300;
@@ -497,6 +503,98 @@ section {
         }
       }
     }
+
+    .mobile-menu-toggle {
+      @apply lg:hidden flex items-center justify-center size-11 rounded-lg border border-white/25 relative transition-colors duration-300;
+      background: rgba(255, 255, 255, 0.06);
+
+      span {
+        @apply absolute w-6 h-[2px] bg-white transition-all duration-300;
+      }
+
+      span:first-child {
+        transform: translateY(-6px);
+      }
+
+      span:last-child {
+        transform: translateY(6px);
+      }
+
+      &.open span:first-child {
+        transform: translateY(0) rotate(45deg);
+      }
+
+      &.open span:last-child {
+        transform: translateY(0) rotate(-45deg);
+      }
+    }
+  }
+
+  .mobile-overlay {
+    @apply lg:hidden;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 90;
+  }
+
+  .mobile-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  nav.mobile {
+    @apply lg:hidden;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: var(--navbar-height);
+    background: #0c0c0f;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 0.85rem 1.25rem 1.35rem;
+    transform: translateY(-12px);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+    z-index: 95;
+  }
+
+  nav.mobile.open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  nav.mobile ul {
+    @apply flex flex-col gap-4;
+    list-style: none;
+    margin: 0;
+    padding: 0 0 0.75rem 0;
+  }
+
+  nav.mobile a {
+    color: #d9ecff;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  .mobile-contact {
+    @apply w-full;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background: #f7e8d4;
+    color: #0b0b0d;
+    padding: 0.9rem 1rem;
+    border-radius: 12px;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
   }
 
   .app-showcase {
@@ -591,21 +689,27 @@ section {
     }
   }
 
-  @media (max-width: 600px) {
-    .showcaselayout {
-      grid-template-columns: 1fr;
-      gap: 1.05rem;
-    }
+@media (max-width: 600px) {
+  .showcaselayout {
+    grid-template-columns: 1fr;
+    gap: 1.05rem;
+  }
 
     .project-card {
       padding: 0.9rem;
     }
 
-    .project-image-wrapper {
-      aspect-ratio: 4 / 3;
-      padding: 0.85rem;
-    }
+  .project-image-wrapper {
+    aspect-ratio: 4 / 3;
+    padding: 0.85rem;
   }
+
+  .experience-heading {
+    font-size: clamp(2.6rem, 13vw, 4rem);
+    line-height: 0.95;
+    gap: clamp(0.15rem, 1vw, 0.4rem);
+  }
+}
 
   .cta-wrapper {
     @apply relative z-20 cursor-pointer;
@@ -688,7 +792,7 @@ section {
     background: #0b0b0d;
     color: #f7e8d4;
     padding: 0;
-    margin-top: clamp(2rem, 5vw, 4rem);
+    margin-top: 0;
   }
 
   .contact-frame {
@@ -696,7 +800,7 @@ section {
     border-top: 2px solid #f7e8d4;
     border-radius: 12px;
     overflow: hidden;
-    min-height: 100vh;
+    min-height: auto;
   }
 
   .contact-topline {
@@ -710,7 +814,7 @@ section {
   .contact-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    min-height: calc(100vh - 4rem);
+    min-height: auto;
   }
 
   .contact-left {
@@ -771,7 +875,7 @@ section {
 
   .contact-btn {
     background:;
-    color: #f7e8d4;
+    color: #550202;
     border: none;
     outline: none;
     padding: 0.95rem 1.2rem;
@@ -846,7 +950,7 @@ section {
   }
 
   .footer {
-    @apply my-10 md:mt-20 mt-10 text-white-50 px-5 md:px-20 xl:px-20 flex items-center justify-center;
+    @apply mt-0 mb-10 md:mb-20 text-white-50 px-5 md:px-20 xl:px-20 flex items-center justify-center;
 
     .footer-container {
       @apply grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-0 w-full;
@@ -903,7 +1007,8 @@ section {
   }
 
   .experience-heading {
-    font-size: clamp(6rem, 16vw, 6rem);
+    font-size: clamp(3.6rem, 12vw, 5.4rem);
+    letter-spacing: -0.02em;
   }
 
   .experience-topline {

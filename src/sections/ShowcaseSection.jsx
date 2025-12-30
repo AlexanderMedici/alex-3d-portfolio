@@ -7,40 +7,52 @@ gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
   {
-    title: "On-Demand Rides Made Simple",
-    description: "A sleek ride-hailing experience with intuitive booking.",
+    title: "Retro Platformer Mario",
+    description:
+      "The static website integrates server-side rendering to serve pre-built HTML, CSS, and JavaScript files.",
     image: "/images/project1.png",
     accent: "#d9f0ff",
   },
   {
-    title: "The Library Management Platform",
-    description: "Track titles, readers, and recommendations with ease.",
+    title: " Crypto Transfer App",
+    description:
+      "A full-fledged application which allows users to send transactions anywhere in the world, through the blockchain.",
     image: "/images/project2.png",
     accent: "#fff1e0",
   },
   {
-    title: "YC Directory Startup Hub",
-    description: "Discover and connect with emerging founders quickly.",
+    title: "Ecommerce App",
+    description: "Vybe is a full-stack e-commerce app built on the MERN stack.",
     image: "/images/project3.png",
     accent: "#ffe8ed",
   },
   {
-    title: "Smart Mobility Companion",
-    description: "Route planning and payments unified in one dashboard.",
-    image: "/images/project1.png",
+    title: "Stock WatchList",
+    description:
+      "Finsage is a Next.js app that helps retail investors research, track, and optimize their portfolios. ",
+    image: "/images/project4.png",
     accent: "#e5f4ff",
   },
   {
-    title: "Digital BookShelf",
-    description: "Curated reading journeys with rich metadata.",
-    image: "/images/project2.png",
-    accent: "#ffe7d6",
+    title: "Crypto Watch",
+    description:
+      "Quick overview: CoinScope is a lightweight crypto dashboard built with React 19 + Vite. It pulls data from the CoinGecko API and uses React Router for navigation..",
+    image: "/images/project5.png",
+    accent: "#f0e7ff",
   },
   {
-    title: "Founder Showcase",
-    description: "Pitch-ready profiles and investor outreach tools.",
-    image: "/images/project3.png",
+    title: " Dijkstra's algorithm",
+    description:
+      "App makes use of Dijkstra's algorithm. The project displays a graphed board where predetermined starting (top left box) and ending (bottom right box) nodes are provided.",
+    image: "/images/project6.png",
     accent: "#ffe0ea",
+  },
+  {
+    title: "Minimalist Site",
+    description:
+      "Conversion-led hero, focused pricing, and crisp interaction cues.",
+    image: "/images/project7.png",
+    accent: "#ffe7d6",
   },
 ];
 

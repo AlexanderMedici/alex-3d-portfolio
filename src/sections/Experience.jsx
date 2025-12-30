@@ -3,7 +3,7 @@ import { useState } from "react";
 const timelineData = [
   {
     title: "Full Stack Developer",
-    company: "Scarborough Health Network",
+    company: "Contract",
     year: "Oct 2022 - Present",
     description:
       "Build responsive, high-performing web apps that stay maintainable at scale.",
@@ -52,10 +52,10 @@ const Experience = () => {
     <section id="experience" className="experience-section">
       <div className="experience-frame">
         <div className="experience-topline">
-          <span>2028</span>
+          <span>2026</span>
           <span>creative</span>
           <span>portfolio</span>
-          <span>photography</span>
+          <span>ALEXANDER</span>
         </div>
 
         <div className="experience-body">
@@ -98,7 +98,6 @@ const Experience = () => {
                     <div className="experience-content-grid">
                       <div className="experience-desc-wrap">
                         <p className="experience-desc">{card.description}</p>
-                        <button className="cta-button alt">View Role</button>
                       </div>
                       <div className="experience-tags">
                         <p className="experience-meta label">Categories</p>
