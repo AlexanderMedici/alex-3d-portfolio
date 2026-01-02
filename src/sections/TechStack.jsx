@@ -1,12 +1,14 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { useMediaQuery } from "react-responsive";
 
 import TitleHeader from "../components/TitleHeader";
 import TechIconCardExperience from "../components/models/tech_logos/TechIconCardExperience";
-import { techStackIcons } from "../constants";
+import { techStackIcons, techStackImgs } from "../constants";
 // import { techStackImgs } from "../constants";
 
 const TechStack = () => {
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   // Animate the tech cards in the skills section
   useGSAP(() => {
     // This animation is triggered when the user scrolls to the #skills wrapper
@@ -47,7 +49,7 @@ const TechStack = () => {
               The key is set to the name of the tech stack icon, and the classnames are set to 
               card-border, tech-card, overflow-hidden, and group. The xl:rounded-full and rounded-lg 
               classes are only applied on larger screens. */}
-          {techStackIcons.map((techStackIcon) => (
+          {(isMobile ? techStackImgs : techStackIcons).map((techStackIcon) => (
             <div
               key={techStackIcon.name}
               className="card-border tech-card overflow-hidden group xl:rounded-full rounded-lg"
@@ -59,7 +61,15 @@ const TechStack = () => {
                 {/* The tech-icon-wrapper div contains the TechIconCardExperience component, 
                     which renders the 3D model of the tech stack icon. */}
                 <div className="tech-icon-wrapper">
-                  <TechIconCardExperience model={techStackIcon} />
+                  {isMobile ? (
+                    <img
+                      src={techStackIcon.imgPath}
+                      alt={techStackIcon.name}
+                      loading="lazy"
+                    />
+                  ) : (
+                    <TechIconCardExperience model={techStackIcon} />
+                  )}
                 </div>
                 {/* The padding-x and w-full classes are used to add horizontal padding to the 
                     text and make it take up the full width of the component. */}
