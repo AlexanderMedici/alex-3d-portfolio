@@ -96,7 +96,9 @@ const Contact = () => {
           <div className="contact-right">
             <div className="contact-info-row">
               <span>1(850)905-0948</span>
-              <span>hellomedici@gmail.com</span>
+              <a href="mailto:hellomedici@gmail.com">
+                hellomedici@gmail.com
+              </a>
             </div>
 
             <h1 className="contact-heading">CONTACT</h1>

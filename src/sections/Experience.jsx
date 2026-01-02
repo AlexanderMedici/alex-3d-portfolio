@@ -123,6 +123,17 @@ const Experience = () => {
               );
             })}
           </div>
+
+          <div className="experience-resume">
+            <a
+              className="resume-link"
+              href="/resume.pdf"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Resume
+            </a>
+          </div>
         </div>
       </div>
     </section>
